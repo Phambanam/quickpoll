@@ -1,0 +1,1 @@
+create database  quick_poll;
