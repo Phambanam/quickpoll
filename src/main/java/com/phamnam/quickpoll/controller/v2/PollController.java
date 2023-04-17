@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -80,6 +81,7 @@ public class PollController {
     }
     @ApiOperation(value = "Delete a Poll with the pollId", response = void.class)
     @DeleteMapping("/polls/{pollId}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> deletePoll(@PathVariable Long pollId){
         verifyPoll(pollId);
         pollRepository.deleteById(pollId);

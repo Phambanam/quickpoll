@@ -41,8 +41,8 @@ public class PollController {
             @ApiResponse(code = 500, message = "Error creating poll",response = ErrorDetail.class)
     })
     @PostMapping("/polls")
-    public ResponseEntity<?> createPoll(@Valid @RequestBody Poll poll){
-        poll = pollRepository.save(poll);
+    public ResponseEntity<?> createPoll( @RequestBody Poll newpoll){
+        Poll poll = pollRepository.save(newpoll);
         System.out.println(poll.getQuestion());
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newPollUri = ServletUriComponentsBuilder
